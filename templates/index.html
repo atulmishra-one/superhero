@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The SuperHero</title>
+    <link rel="stylesheet" href="/static/bootstrap.css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mt-5 mx-auto">
+            <div class="card">
+                <div class="card-block">
+                    <div class="container container-fluid">
+                        {% from "_formhelpers.html" import render_field %}
+                        <form method="post">
+                            {{ form.csrf_token }}
+                            <div class="form-group-row">
+                                {{form.email.label(class_='col-sm-2')}}
+                                <div class="col-sm-10">
+                                    {{ form.email(type='email', class_='form-control') }}
+                                    {% with messages = get_flashed_messages() %}
+                                        {{ render_field(messages, 'email')}}
+                                    {% endwith %}
+                                </div>
+
+                            </div>
+                            <div class="form-group-row">
+                                {{form.password.label(class_='col-sm-2')}}
+                                <div class="col-sm-10">
+                                    {{ form.password(class_='form-control') }}
+                                    {% with messages = get_flashed_messages() %}
+                                        {{ render_field(messages, 'password')}}
+                                    {% endwith %}
+                                </div>
+                            </div>
+                            <div class="form-group-row">
+                                <label class="col-sm-2">&nbsp;</label>
+                                <div class="col-sm-10">
+                                    <button type="submit" class="btn btn-primary">Login</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <small>SuperHero &copy; . Version 1.0</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

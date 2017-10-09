@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The SuperHero</title>
+    <link rel="stylesheet" href="/static/bootstrap.css">
+</head>
+<body>
+
+<div class="container container-fluid">
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link {% if page == 'members.html' %}active{% endif %}" href="/bhul_bhulai_ya/members">Manage member</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if page == 'subscriptions.html' %}active{% endif %}" href="/bhul_bhulai_ya/subscriptions">Subscriptions</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" role="tabpanel">
+                    {% include page %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

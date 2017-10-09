@@ -1,0 +1,44 @@
+<div class="container container-fluid">
+    <div class="row mt-5">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-block">
+                            <h4 class="card-title">Create Product</h4>
+                            <form method="post">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                    <label class="col-sm-2 form-control-label col-form-label">
+                                        Name</label>
+                                    <div class="col-sm-10">
+                                        {{productform.name(class_='form-control')}}
+                                    </div>
+                                </div>
+                                </div>
+                                 <div class="form-row">
+                                    <div class="form-group">
+                                    <label class="col-sm-2 form-control-label col-form-label">
+                                        Content</label>
+                                    <div class="col-sm-10">
+                                        {{productform.content(class_='form-control')}}
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                       <div class="col-sm-10">
+                                           <button type="submit" class="btn btn-primary">Submit</button>
+                                       </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+        </div>
+    </div>
+</div>

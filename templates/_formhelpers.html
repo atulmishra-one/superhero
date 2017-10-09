@@ -1,0 +1,9 @@
+{% macro render_field(messages, t) %}
+  {% if messages %}
+    {% for message in messages %}
+      {% if message[t] %}
+        <small class="help-text text-danger">{{ '&nbsp;&nbsp;&nbsp;&nbsp;'.join(message[t]) }}</small>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endmacro %}

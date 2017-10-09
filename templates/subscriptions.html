@@ -1,0 +1,80 @@
+<div class="container container-fluid">
+    <div class="row mt-5">
+        <div class="col-md-5">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-block">
+                            <h4 class="card-title">Create Subscriptions</h4>
+                            <form method="post">
+                                {{subscriptionsform.csrf_token}}
+                                <div class="form-row">
+                                    <div class="form-group">
+                                    <label class="col-sm-2 form-control-label col-form-label">
+                                        Member</label>
+                                    <div class="col-sm-10">
+                                        {{subscriptionsform.user_email(class_='form-control')}}
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label class="col-sm-10 form-control-label col-form-label">
+                                        Status {{subscriptionsform.active}}
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <div class="col-sm-10">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Member</th>
+                        <th>Details</th>
+                        <th>Status</th>
+                        <th>Download Script</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for subscription in subscriptions %}
+                        <tr>
+                           <td>{{subscription.id}}</td>
+                            <td>{{subscription.email}}</td>
+                            <td><a href="/maya/{{subscription.id}}">view</a></td>
+
+                            <td>
+                        <form method="post">
+                            <input type="hidden" name="subscription_id"
+                                   value="{{subscription.id}}">
+                            <input type="hidden" name="status"
+                                   value="{{subscription.active}}">
+                            <button type="submit" class="btn btn-sm">
+                                {% if subscription.active %}
+                                Active
+                                {% else %}
+                                Inactive
+                                {% endif %}
+                            </button>
+                        </form>
+                    </td>
+                            <td><a href="/download/{{subscription.user_id}}/{{subscription.id}}" class="btn btn-success">Download</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
