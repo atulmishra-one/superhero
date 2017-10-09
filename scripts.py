@@ -2,7 +2,7 @@ from flask import request
 
 
 def get_php(member_id, subscription_id):
-    str = """
+    sr = """
     <?php error_reporting(E_ALL & ~E_NOTICE);header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 $id = "{}";
 $uid="{}";
@@ -25,5 +25,5 @@ if( !empty($a13['money_page']))
 header("location: ".$a13['user_money_page'], TRUE, 301);
 ?>
     """ % (str(subscription_id), str(member_id), str(request.host))
-    return bytes(str, 'utf-8')
+    return bytes(sr, 'utf-8')
 
