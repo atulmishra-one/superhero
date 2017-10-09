@@ -11,6 +11,7 @@ from forms import UserLoginForm
 from forms import get_user
 from forms import MemberForm
 from forms import SubscriptionsForm
+from flask_login import login_required, login_user, logout_user, current_user
 
 from models import UserType
 from models import User
@@ -31,13 +32,14 @@ def index():
     if request.method == 'POST':
         user = get_user(form.email.data, form.password.data)
         if form.validate():
-            user_type = UserType.query.get(user.id)
+            user_type = UserType.query.get(user.user_type)
             session['user_info'] = dict(
                 email=user.email,
                 id=user.id,
                 password=user.password,
                 user_type=user_type.name
             )
+            login_user(user, fresh=True)
 
             if user_type.name == 'thedeft':
                 return redirect('bhul_bhulai_ya')
@@ -52,10 +54,14 @@ def index():
     )
 
 
+@login_required
 def dashboard():
-    return render_template('dashboard.html')
+    subscriptions = Subscriptions.query\
+        .filter(Subscriptions.user_id == current_user.id).all()
+    return render_template('dashboard.html', subscriptions=subscriptions)
 
 
+@login_required
 def bhul_bhulai_ya(page=None):
 
     members = User.query.join(

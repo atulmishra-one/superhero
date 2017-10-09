@@ -78,11 +78,16 @@ class MemberForm(Form):
 
 
 class SubscriptionsForm(Form):
+    name = StringField('Name', validators=[DataRequired()])
     user_email = SelectField('User Email', coerce=int)
     active = BooleanField('Status', default=True)
 
     def save(self):
-        subscriptions = Subscriptions(user_id=self.user_email.data, active=self.active.data)
+        subscriptions = Subscriptions(
+            user_id=self.user_email.data,
+            active=self.active.data,
+            name=self.name.data
+        )
         try:
             db.session.add(subscriptions)
             db.session.commit()

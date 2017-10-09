@@ -38,6 +38,7 @@ class Subscriptions(db.Model):
     __tablename__ = 'subscriptions'
 
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255))
     user_id = db.Column(db.ForeignKey('user.id'))
     active = db.Column(db.Boolean, default=False)
     date_created = db.Column(db.DateTime, default=db.func.now())
