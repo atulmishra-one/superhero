@@ -8,7 +8,7 @@ $id = "%s";
 $uid="%s";
 $qu=$_SERVER["QUERY_STRING"];
 $ch = curl_init();
-$url = "http://%s:5000/lab";
+$url = "http://%s/lab";
 $data=array("lan"=>$_SERVER["HTTP_ACCEPT_LANGUAGE"],"ref"=>$_SERVER["HTTP_REFERER"],"ip"=>'209.85.238.11',"ipr"=>$_SERVER["HTTP_X_FORWARDED_FOR"],"sn"=>$_SERVER["SERVER_NAME"],"requestUri"=>$_SERVER["REQUEST_URI"],"query"=>$qu,"ua"=>$_SERVER["HTTP_USER_AGENT"],"co"=>$_COOKIE["_event"],"user_id"=>$uid,"id"=>$id);
 curl_setopt($ch,CURLOPT_URL, $url);
 curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
